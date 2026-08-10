@@ -1,93 +1,21 @@
 (() => {
-  const config = window.PLUS_SITE_CONFIG;
-  if (!config) return;
-
-  const textAll = (selector, value) => {
-    document.querySelectorAll(selector).forEach((element) => {
-      element.textContent = value;
-    });
-  };
-
-  textAll('[data-org]', config.organization);
-  textAll('[data-org-en]', config.organizationEnglish);
-  textAll('[data-tagline]', config.tagline);
-  textAll('[data-lead]', config.lead);
-  textAll('[data-mission]', config.mission);
-  textAll('[data-address]', config.address);
-  textAll('[data-tel]', config.telephone);
-  textAll('[data-fax]', config.fax);
-  textAll('[data-email]', config.email);
-  textAll('[data-hours]', config.businessHours);
-
-  document.querySelectorAll('[data-tel-link]').forEach((a) => {
-    a.href = `tel:${config.telephone.replace(/[^0-9+]/g, '')}`;
-  });
-  document.querySelectorAll('[data-email-link]').forEach((a) => {
-    const valid = config.email.includes('@');
-    a.href = valid ? `mailto:${config.email}` : '#contact';
-  });
-
-  document.getElementById('vision-list').innerHTML = config.vision
-    .map((item) => `<li>${escapeHtml(item)}</li>`)
-    .join('');
-
-  document.getElementById('project-grid').innerHTML = config.projects
-    .map((item) => `
-      <article class="card">
-        <span class="category">${escapeHtml(item.category)}</span>
-        <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.description)}</p>
-      </article>
-    `)
-    .join('');
-
-  document.getElementById('branch-grid').innerHTML = config.branches
-    .map((item) => `
-      <article class="card">
-        <span class="category">${escapeHtml(item.category)}</span>
-        <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.description)}</p>
-        ${item.url ? `<a class="more" href="${escapeAttribute(item.url)}" target="_blank" rel="noopener">홈페이지 보기 →</a>` : ''}
-      </article>
-    `)
-    .join('');
-
-  document.getElementById('history-list').innerHTML = config.history
-    .map((item) => `<li><time>${escapeHtml(item.year)}</time><span>${escapeHtml(item.text)}</span></li>`)
-    .join('');
-
-  document.getElementById('notice-list').innerHTML = config.notices
-    .map((item) => `
-      <article class="notice">
-        <time datetime="${escapeAttribute(item.date)}">${escapeHtml(item.date)}</time>
-        <div><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.body)}</p></div>
-      </article>
-    `)
-    .join('');
-
-  document.getElementById('map-link').href = `https://map.naver.com/p/search/${encodeURIComponent(config.mapQuery || config.address)}`;
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const menuButton = document.querySelector('.menu-button');
-  const nav = document.getElementById('main-nav');
-  menuButton.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    menuButton.setAttribute('aria-expanded', String(open));
-  });
-  nav.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('open');
-      menuButton.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, (char) => ({
-      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
-    })[char]);
-  }
-
-  function escapeAttribute(value) {
-    return escapeHtml(value).replace(/`/g, '&#096;');
-  }
+  const c = window.PLUS_SITE_CONFIG;if(!c)return;
+  const esc=v=>String(v??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+  const attr=v=>esc(v).replace(/`/g,'&#096;');
+  const textAll=(sel,val)=>document.querySelectorAll(sel).forEach(el=>el.textContent=val??'');
+  textAll('[data-tagline]',c.tagline);textAll('[data-lead]',c.lead);textAll('[data-purpose]',c.purpose);textAll('[data-mission]',c.mission);textAll('[data-vision-title]',c.visionTitle);textAll('[data-chairman]',c.chairman);textAll('[data-address]',c.address);textAll('[data-tel]',c.telephone);textAll('[data-email]',c.email);textAll('[data-hours]',c.businessHours);textAll('[data-parking]',c.parking);textAll('[data-established]',c.establishedDate);textAll('[data-business-no]',c.businessNumber);textAll('[data-corp-no]',c.corporationNumber);textAll('[data-fax]',c.fax);textAll('[data-housing-units]',c.housing.managedUnits);
+  document.querySelectorAll('[data-tel-link]').forEach(a=>a.href=`tel:${c.telephone.replace(/[^0-9+]/g,'')}`);document.querySelectorAll('[data-email-link]').forEach(a=>a.href=`mailto:${c.email}`);const faxRow=document.querySelector('[data-fax-row]');if(faxRow&&!c.fax)faxRow.hidden=true;
+  document.getElementById('value-list').innerHTML=c.coreValues.map(v=>`<div class="value-item"><strong>${esc(v.title)}</strong><span>${esc(v.text)}</span></div>`).join('');
+  document.getElementById('greeting-text').textContent=c.greeting;
+  const projectHTML = items => items.map(p=>`<article class="project-card ${p.image?'':'no-image'}"><div><span class="category">${esc(p.category)}</span><span class="status">${esc(p.status)}</span><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p>${p.phone?`<div class="meta">대표전화 ${esc(p.phone)}</div>`:''}${p.url?`<a class="more" href="${attr(p.url)}" target="_blank" rel="noopener">${esc(p.linkLabel||'자세히 보기')} →</a>`:''}</div>${p.image?`<img src="${attr(p.image)}" alt="${esc(p.title)} 대표 이미지" loading="lazy">`:''}</article>`).join('');
+  document.getElementById('project-grid').innerHTML=projectHTML(c.projects);
+  document.getElementById('housing-description').textContent=c.housing.description;document.getElementById('housing-link').href=c.housing.url;document.getElementById('housing-poster-link').href=c.housing.url;
+  if(c.togetherMap){textAll('[data-together-map-subtitle]',c.togetherMap.subtitle);textAll('[data-together-map-description]',c.togetherMap.description);const ml=document.getElementById('together-map-link'),mf=document.getElementById('together-map-frame');if(ml)ml.href=c.togetherMap.url;if(mf)mf.src=c.togetherMap.url;}
+  document.getElementById('platform-description').textContent=c.platform.description;document.getElementById('floor-list').innerHTML=c.platform.floors.map(f=>`<div class="floor-item"><strong>${esc(f.floor)}</strong><span>${esc(f.tenants)}</span></div>`).join('');
+  document.getElementById('history-list').innerHTML=c.history.map(h=>`<li><time>${esc(h.year)}</time><span>${esc(h.text)}</span></li>`).join('');
+  function renderNotices(items){document.getElementById('notice-list').innerHTML=(items||[]).map(n=>`<article class="notice"><time datetime="${attr(n.date||'')}">${esc(n.date||'')}</time><span class="notice-category">${esc(n.category||'공지')}</span><div><h3>${n.pinned?'[중요] ':''}${esc(n.title)}</h3><p>${esc(n.body||'')}</p></div></article>`).join('')||'<p>등록된 공지사항이 없습니다.</p>'}
+  function renderGallery(items){document.getElementById('gallery-grid').innerHTML=(items||[]).map(g=>`<figure class="gallery-card"><img src="${attr(g.image||g.image_url)}" alt="${esc(g.title||'활동 사진')}" loading="lazy"><figcaption><strong>${esc(g.title||'')}</strong><span>${esc(g.description||'')}</span></figcaption></figure>`).join('')||'<p>등록된 사진이 없습니다.</p>'}
+  renderNotices(c.notices);renderGallery(c.gallery);window.PLUS_RENDER={renderNotices,renderGallery};
+  document.getElementById('map-link').href=`https://map.naver.com/p/search/${encodeURIComponent(c.mapQuery||c.address)}`;document.getElementById('year').textContent=new Date().getFullYear();
+  const btn=document.querySelector('.menu-button'),nav=document.getElementById('main-nav');btn.addEventListener('click',()=>{const o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',String(o))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');btn.setAttribute('aria-expanded','false')}));
 })();
