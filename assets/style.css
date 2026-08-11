@@ -188,6 +188,8 @@ h1,h2,h3{text-wrap:balance}
 .greeting-card{margin-top:14px}
 .greeting-card #greeting-text{white-space:pre-line;margin:0;color:#3c5059;font-size:14.5px;line-height:1.75}
 .signature{display:block;text-align:right;margin-top:20px;color:var(--deep)}
+.chairman-photo{margin:14px 0 0 auto;width:104px}
+.chairman-photo img{width:100%;aspect-ratio:640/769;object-fit:cover;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
 
 @media(min-width:640px){.values{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:900px){
@@ -195,6 +197,7 @@ h1,h2,h3{text-wrap:balance}
   .mission-card,.vision-card,.greeting-card{padding:32px}
   .greeting-card{display:grid;grid-template-columns:.35fr 1fr;gap:32px;margin-top:20px}
   .greeting-card #greeting-text{font-size:15.5px}
+  .chairman-photo{width:128px;margin-top:18px}
 }
 
 /* ===== 주요 사업 카드 =====
@@ -267,16 +270,26 @@ h1,h2,h3{text-wrap:balance}
 .platform-head img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.2)}
 .platform-head>div>p:last-child{color:#d0dfe5;font-size:15px;line-height:1.75}
 .floor-list{display:grid;grid-template-columns:1fr;gap:8px;margin-top:24px}
-.floor-item{display:grid;grid-template-columns:80px 1fr;gap:10px;padding:14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(255,255,255,.04)}
-.floor-item strong{color:#f5b33b;font-size:13.5px}
-.floor-item span{color:#e4edf0;font-size:13.5px;line-height:1.55}
+.floor-item{display:grid;grid-template-columns:80px 1fr;gap:10px;padding:14px;border:1px solid rgba(255,255,255,.18);border-radius:12px;background:rgba(255,255,255,.04);align-items:start}
+.floor-item strong{color:#f5b33b;font-size:13.5px;padding-top:2px}
+.floor-tenants{display:grid;gap:9px}
+.tenant{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.tenant-name{color:#e4edf0;font-size:13.5px;line-height:1.5}
+.tenant-note{font-size:11.5px;font-weight:800;color:#c9d6da;background:rgba(255,255,255,.1);padding:3px 9px;border-radius:999px}
+.tenant-link{display:inline-flex;align-items:center;min-height:32px;padding:5px 12px;border-radius:999px;background:#f5b33b;color:#173b50;font-size:12.5px;font-weight:800}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
 @media(min-width:900px){
   .platform-head{grid-template-columns:1fr .95fr;gap:50px;align-items:center}
   .platform-head>div>p:last-child{font-size:17px}
   .floor-list{grid-template-columns:repeat(2,1fr);gap:10px;margin-top:34px}
   .floor-item{grid-template-columns:90px 1fr;padding:17px}
-  .floor-item strong,.floor-item span{font-size:14px}
+  .floor-item strong{font-size:14px}
+  .tenant-name{font-size:14px}
+}
+@media(min-width:900px) and (hover:hover) and (pointer:fine){
+  .tenant-link{transition:background .15s}
+  .tenant-link:hover{background:#ffcf6b}
 }
 
 /* ===== 연혁 ===== */
@@ -343,6 +356,19 @@ h1,h2,h3{text-wrap:balance}
   .map-card{padding:30px}
   .map-card img{max-width:300px;max-height:280px}
 }
+
+/* ===== 유관기관 배너 =====
+   가로로 천천히, 끊김 없이 흐르는 배너. 목록은 app.js에서 2배로 복제해 이어붙임.
+   마우스를 올리거나 키보드로 초점이 가면 멈춤(내용을 읽을 수 있도록). */
+.partners-band{background:#fff;border-top:1px solid var(--line);padding:18px 0 22px;overflow:hidden}
+.partners-label{max-width:var(--max);margin:0 auto 12px;padding-inline:20px;color:var(--muted);font-size:11.5px;font-weight:900;letter-spacing:.14em;text-align:center}
+.partners-viewport{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.partners-track{display:flex;align-items:center;gap:12px;width:max-content;animation:partners-scroll 34s linear infinite}
+.partners-track:hover,.partners-track:focus-within{animation-play-state:paused}
+.partner-badge{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--deep);font-weight:800;font-size:13px;white-space:nowrap}
+@keyframes partners-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(hover:hover) and (pointer:fine){.partner-badge:hover{border-color:var(--deep);background:var(--mist)}}
+@media(prefers-reduced-motion:reduce){.partners-track{animation:none;overflow-x:auto;padding-bottom:4px}}
 
 /* ===== 푸터 ===== */
 .site-footer{background:var(--ink);color:#9fb2bc;padding:40px 0 20px}

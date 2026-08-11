@@ -24,11 +24,24 @@
       }
     }
   }
-  document.getElementById('platform-description').textContent=c.platform.description;document.getElementById('floor-list').innerHTML=c.platform.floors.map(f=>`<div class="floor-item"><strong>${esc(f.floor)}</strong><span>${esc(f.tenants)}</span></div>`).join('');
+  document.getElementById('platform-description').textContent=c.platform.description;
+  document.getElementById('floor-list').innerHTML=c.platform.floors.map(f=>{
+    const tenants=(f.tenants||[]).map(t=>{
+      const links=(t.links||[]).map(l=>`<a class="tenant-link" href="${attr(l.url)}" target="_blank" rel="noopener">${esc(l.label)} →<span class="sr-only"> (새 창 열림)</span></a>`).join('');
+      const note=t.note?`<span class="tenant-note">${esc(t.note)}</span>`:'';
+      return `<div class="tenant"><span class="tenant-name">${esc(t.name)}</span>${note}${links}</div>`;
+    }).join('');
+    return `<div class="floor-item"><strong>${esc(f.floor)}</strong><div class="floor-tenants">${tenants}</div></div>`;
+  }).join('');
   document.getElementById('history-list').innerHTML=c.history.map(h=>`<li><time>${esc(h.year)}</time><span>${esc(h.text)}</span></li>`).join('');
   function renderNotices(items){document.getElementById('notice-list').innerHTML=(items||[]).map(n=>`<article class="notice"><time datetime="${attr(n.date||'')}">${esc(n.date||'')}</time><span class="notice-category">${esc(n.category||'공지')}</span><div><h3>${n.pinned?'[중요] ':''}${esc(n.title)}</h3><p>${esc(n.body||'')}</p></div></article>`).join('')||'<p>등록된 공지사항이 없습니다.</p>'}
   function renderGallery(items){document.getElementById('gallery-grid').innerHTML=(items||[]).map(g=>`<figure class="gallery-card"><img src="${attr(g.image||g.image_url)}" alt="${esc(g.title||'활동 사진')}" loading="lazy"><figcaption><strong>${esc(g.title||'')}</strong><span>${esc(g.description||'')}</span></figcaption></figure>`).join('')||'<p>등록된 사진이 없습니다.</p>'}
   renderNotices(c.notices);renderGallery(c.gallery);window.PLUS_RENDER={renderNotices,renderGallery};
+  const partnersTrack=document.getElementById('partners-track');
+  if(partnersTrack&&c.partners&&c.partners.length){
+    const badges=c.partners.map(p=>`<a class="partner-badge" href="${attr(p.url)}" target="_blank" rel="noopener">${esc(p.name)}<span class="sr-only"> (새 창 열림)</span></a>`).join('');
+    partnersTrack.innerHTML=badges+badges;
+  }
   document.getElementById('map-link').href=`https://map.naver.com/p/search/${encodeURIComponent(c.mapQuery||c.address)}`;document.getElementById('year').textContent=new Date().getFullYear();
   const btn=document.querySelector('.menu-button'),nav=document.getElementById('main-nav');
   const closeNav=()=>{nav.classList.remove('open');btn.setAttribute('aria-expanded','false')};
