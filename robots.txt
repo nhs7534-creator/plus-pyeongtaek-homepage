@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://nhs7534-creator.github.io/plus-pyeongtaek-homepage/sitemap.xml
