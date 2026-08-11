@@ -1,8 +1,8 @@
 window.PLUS_SITE_CONFIG = {
   organization: "사회적협동조합 플러스평택",
   organizationEnglish: "PLUS PYEONGTAEK SOCIAL COOPERATIVE",
-  tagline: "협동으로 잇고, 자산으로 남기고, 사람으로 완성합니다",
-  lead: "사회적협동조합 플러스평택은 자활·돌봄·주거·지역자산을 연결해 주민이 지역에서 더 안정적으로 살아갈 수 있는 기반을 만듭니다.",
+  tagline: "함께 일하고, 돌보고, 살아가는 평택을 만듭니다",
+  lead: "일자리·돌봄·주거·지역자산이 필요한 순간, 플러스평택이 지역의 자원과 사람을 연결합니다.",
   purpose: "협동의 힘으로 취약계층의 자활과 자립을 지원하고, 일자리·돌봄·주거·지역자산을 연결하여 함께 살아가는 지역사회를 만듭니다.",
   chairman: "이현주",
   establishedDate: "2019년 01월 09일",
