@@ -39,7 +39,7 @@ window.PLUS_SITE_CONFIG = {
     {
       key:"care", category:"돌봄", title:"도우누리평택노인재활주간보호센터", status:"운영 중",
       description:"어르신이 지역사회 안에서 안전하고 건강한 일상을 이어갈 수 있도록 재활과 주간 돌봄 서비스를 제공합니다.",
-      url:"https://blog.naver.com/ptcare_", linkLabel:"네이버 블로그 보기", image:"assets/images/doonuri-building.jpg"
+      url:"https://blog.naver.com/ptcare", linkLabel:"네이버 블로그 보기", image:"assets/images/doonuri-building.jpg"
     },
     {
       key:"housing", category:"주거", title:"평택형 사회주택", status:"운영 중 · 100세대 관리",
@@ -78,9 +78,8 @@ window.PLUS_SITE_CONFIG = {
   },
   history: [
     {year:"2019", text:"사회적협동조합 플러스평택 설립"},
-    {year:"2020", text:"평택형 청년사회주택 운영 시작"},
-    {year:"2024", text:"협동자산화빌딩 종된사업장 개설 및 플러스평택협동플랫폼 운영 기반 마련"},
-    {year:"2026", text:"평택형 사회주택 약 100세대 관리, 자활·돌봄·주거·지역자산 연계사업 운영"}
+    {year:"2020", text:"평택형 사회주택 운영 시작 (7가구)"},
+    {year:"2024", text:"플러스평택협동플랫폼 운영 시작"}
   ],
   notices: [
     {date:"2026-08-10", category:"공지", title:"사회적협동조합 플러스평택 홈페이지를 새롭게 준비하고 있습니다.", body:"플러스평택의 주요 사업과 활동 소식을 보다 쉽게 확인할 수 있도록 홈페이지를 정비하고 있습니다.", pinned:true}
