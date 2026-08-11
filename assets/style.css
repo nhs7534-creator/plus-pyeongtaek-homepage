@@ -188,7 +188,7 @@ h1,h2,h3{text-wrap:balance}
 .greeting-card{margin-top:14px}
 .greeting-card #greeting-text{white-space:pre-line;margin:0;color:#3c5059;font-size:14.5px;line-height:1.75}
 .signature{display:block;text-align:right;margin-top:20px;color:var(--deep)}
-.chairman-photo{margin:14px 0 0 auto;width:104px}
+.chairman-photo{margin:14px 0 0 auto;width:118px}
 .chairman-photo img{width:100%;aspect-ratio:640/769;object-fit:cover;border-radius:12px;border:1px solid var(--line);box-shadow:var(--shadow-sm)}
 
 @media(min-width:640px){.values{grid-template-columns:repeat(2,1fr)}}
@@ -197,7 +197,6 @@ h1,h2,h3{text-wrap:balance}
   .mission-card,.vision-card,.greeting-card{padding:32px}
   .greeting-card{display:grid;grid-template-columns:.35fr 1fr;gap:32px;margin-top:20px}
   .greeting-card #greeting-text{font-size:15.5px}
-  .chairman-photo{width:128px;margin-top:18px}
 }
 
 /* ===== 주요 사업 카드 =====

@@ -38,9 +38,9 @@
   function renderGallery(items){document.getElementById('gallery-grid').innerHTML=(items||[]).map(g=>`<figure class="gallery-card"><img src="${attr(g.image||g.image_url)}" alt="${esc(g.title||'활동 사진')}" loading="lazy"><figcaption><strong>${esc(g.title||'')}</strong><span>${esc(g.description||'')}</span></figcaption></figure>`).join('')||'<p>등록된 사진이 없습니다.</p>'}
   renderNotices(c.notices);renderGallery(c.gallery);window.PLUS_RENDER={renderNotices,renderGallery};
   const partnersTrack=document.getElementById('partners-track');
-  if(partnersTrack&&c.partners&&c.partners.length){
-    const badges=c.partners.map(p=>`<a class="partner-badge" href="${attr(p.url)}" target="_blank" rel="noopener">${esc(p.name)}<span class="sr-only"> (새 창 열림)</span></a>`).join('');
-    partnersTrack.innerHTML=badges+badges;
+  if(partnersTrack&&partnersTrack.children.length&&!partnersTrack.dataset.doubled){
+    partnersTrack.innerHTML+=partnersTrack.innerHTML;
+    partnersTrack.dataset.doubled='1';
   }
   document.getElementById('map-link').href=`https://map.naver.com/p/search/${encodeURIComponent(c.mapQuery||c.address)}`;document.getElementById('year').textContent=new Date().getFullYear();
   const btn=document.querySelector('.menu-button'),nav=document.getElementById('main-nav');

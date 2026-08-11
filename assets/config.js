@@ -124,13 +124,5 @@ window.PLUS_SITE_CONFIG = {
     {image:"assets/images/platform-building.jpg", title:"플러스평택협동플랫폼", description:"자활·돌봄·사회적경제 조직이 함께 활동하는 협동자산화 거점입니다."},
     {image:"assets/images/doonuri-building.jpg", title:"도우누리평택노인재활주간보호센터", description:"어르신의 안전한 일상과 재활을 지원하는 주간보호센터입니다."},
     {image:"assets/images/housing-poster.jpg", title:"평택형 사회주택", description:"주거 안정과 공공성을 함께 추구하는 사회적협동조합 플러스평택의 사회주택 사업입니다."}
-  ],
-  partners: [
-    {name:"보건복지부", url:"https://www.mohw.go.kr"},
-    {name:"국민권익위원회", url:"https://www.acrc.go.kr"},
-    {name:"평택시청", url:"https://www.pyeongtaek.go.kr"},
-    {name:"한국사회적기업진흥원", url:"https://www.socialenterprise.or.kr"},
-    {name:"평택지역자활센터", url:"https://www.ptjahwal.or.kr"},
-    {name:"사람과세상", url:"https://www.pns.or.kr"}
   ]
 };
