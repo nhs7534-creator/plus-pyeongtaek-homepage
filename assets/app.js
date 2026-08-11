@@ -37,11 +37,6 @@
   function renderNotices(items){document.getElementById('notice-list').innerHTML=(items||[]).map(n=>`<article class="notice"><time datetime="${attr(n.date||'')}">${esc(n.date||'')}</time><span class="notice-category">${esc(n.category||'공지')}</span><div><h3>${n.pinned?'[중요] ':''}${esc(n.title)}</h3><p>${esc(n.body||'')}</p></div></article>`).join('')||'<p>등록된 공지사항이 없습니다.</p>'}
   function renderGallery(items){document.getElementById('gallery-grid').innerHTML=(items||[]).map(g=>`<figure class="gallery-card"><img src="${attr(g.image||g.image_url)}" alt="${esc(g.title||'활동 사진')}" loading="lazy"><figcaption><strong>${esc(g.title||'')}</strong><span>${esc(g.description||'')}</span></figcaption></figure>`).join('')||'<p>등록된 사진이 없습니다.</p>'}
   renderNotices(c.notices);renderGallery(c.gallery);window.PLUS_RENDER={renderNotices,renderGallery};
-  const partnersTrack=document.getElementById('partners-track');
-  if(partnersTrack&&partnersTrack.children.length&&!partnersTrack.dataset.doubled){
-    partnersTrack.innerHTML+=partnersTrack.innerHTML;
-    partnersTrack.dataset.doubled='1';
-  }
   document.getElementById('map-link').href=`https://map.naver.com/p/search/${encodeURIComponent(c.mapQuery||c.address)}`;document.getElementById('year').textContent=new Date().getFullYear();
   const btn=document.querySelector('.menu-button'),nav=document.getElementById('main-nav');
   const closeNav=()=>{nav.classList.remove('open');btn.setAttribute('aria-expanded','false')};

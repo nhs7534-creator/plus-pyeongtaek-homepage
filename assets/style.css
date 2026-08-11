@@ -357,17 +357,28 @@ h1,h2,h3{text-wrap:balance}
 }
 
 /* ===== 유관기관 배너 =====
-   가로로 천천히, 끊김 없이 흐르는 배너. 목록은 app.js에서 2배로 복제해 이어붙임.
-   마우스를 올리거나 키보드로 초점이 가면 멈춤(내용을 읽을 수 있도록). */
-.partners-band{background:#fff;border-top:1px solid var(--line);padding:18px 0 22px;overflow:hidden}
-.partners-label{max-width:var(--max);margin:0 auto 12px;padding-inline:20px;color:var(--muted);font-size:11.5px;font-weight:900;letter-spacing:.14em;text-align:center}
-.partners-viewport{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.partners-track{display:flex;align-items:center;gap:12px;width:max-content;animation:partners-scroll 34s linear infinite}
+   로고가 왼쪽으로 천천히, 끊김 없이 흐름. 목록은 app.js가 2배로 복제해 이어붙임.
+   마우스를 올리거나 키보드 초점이 가면 멈춤(로고를 보고 누를 수 있도록). */
+.partners-band{background:#fff;border-top:1px solid var(--line);padding:20px 0 24px;overflow:hidden}
+.partners-label{max-width:var(--max);margin:0 auto 14px;padding-inline:20px;color:var(--muted);font-size:11.5px;font-weight:900;letter-spacing:.14em;text-align:center}
+.partners-viewport{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.partners-track{display:flex;align-items:center;gap:14px;width:max-content;animation:partners-scroll 48s linear infinite}
 .partners-track:hover,.partners-track:focus-within{animation-play-state:paused}
-.partner-badge{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--deep);font-weight:800;font-size:13px;white-space:nowrap}
+.partner-badge{flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:10px 18px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.partner-badge img{height:40px;width:auto;max-width:none;object-fit:contain}
 @keyframes partners-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media(hover:hover) and (pointer:fine){.partner-badge:hover{border-color:var(--deep);background:var(--mist)}}
-@media(prefers-reduced-motion:reduce){.partners-track{animation:none;overflow-x:auto;padding-bottom:4px}}
+@media(hover:hover) and (pointer:fine){
+  .partner-badge{transition:border-color .18s,box-shadow .18s}
+  .partner-badge:hover{border-color:#aac7ba;box-shadow:var(--shadow-sm)}
+}
+@media(max-width:639px){
+  .partners-band{padding:16px 0 20px}
+  .partner-badge{min-height:52px;padding:8px 14px;border-radius:10px}
+  .partner-badge img{height:32px}
+}
+@media(prefers-reduced-motion:reduce){
+  .partners-track{animation:none;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+}
 
 /* ===== 푸터 ===== */
 .site-footer{background:var(--ink);color:#9fb2bc;padding:40px 0 20px}
