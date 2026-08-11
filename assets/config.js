@@ -87,9 +87,6 @@ window.PLUS_SITE_CONFIG = {
         {name:"공실"}
       ]},
       {floor:"지상 4층", tenants:[
-        {name:"평택지역자활센터", links:[
-          {label:"홈페이지", url:"https://www.ptjahwal.or.kr"}
-        ]},
         {name:"청자람상점", links:[
           {label:"스마트스토어", url:"https://smartstore.naver.com/pjmk4545"}
         ]},
@@ -99,11 +96,11 @@ window.PLUS_SITE_CONFIG = {
       ]},
       {floor:"지상 5층", tenants:[
         {name:"사회적협동조합 플러스평택"},
-        {name:"평택협동사회네트워크 사회적협동조합", note:"준비중"},
+        {name:"평택협동사회네트워크 사회적협동조합"},
         {name:"평택시자활기업협의회", links:[
           {label:"찾아오는길", url:"https://naver.me/GrghmYft"}
         ]},
-        {name:"실업극복평택센터", note:"준비중"}
+        {name:"실업극복평택센터"}
       ]}
     ]
   },
@@ -113,9 +110,16 @@ window.PLUS_SITE_CONFIG = {
     url:"https://nhs7534-creator.github.io/pyeongtaek-housing/"
   },
   history: [
-    {year:"2019", text:"사회적협동조합 플러스평택 설립"},
-    {year:"2020", text:"평택형 사회주택 운영 시작 (7가구)"},
-    {year:"2024", text:"플러스평택협동플랫폼 운영 시작"}
+    {year:"2018.10", text:"사회적협동조합 평택지역자활센터 창립총회 (보건복지부 지역자활센터 유형다변화 시범사업)"},
+    {year:"2019.01", text:"기획재정부 '사회적협동조합' 인가"},
+    {year:"2019.10", text:"한국서부발전 평택발전본부 사회적일자리 모이라이 카페 개소"},
+    {year:"2020.02", text:"자활기업 맘앤맘협동조합 설립 지원"},
+    {year:"2020.08", text:"전국지역자활센터 우수기관 선정"},
+    {year:"2022.09", text:"전국지역자활센터 우수기관 선정"},
+    {year:"2023.08", text:"자활기업 한그릇협동조합 설립 지원"},
+    {year:"2023.12", text:"대한민국 주거복지문화대상 '대상' 수상"},
+    {year:"2025.10", text:"사회적협동조합 플러스평택 설립인가증 변경 (보건복지부 지역자활센터 유형다변화 시범사업 종료)"},
+    {year:"2026.03", text:"사회적협동조합 플러스평택 9차 정기총회 개최"}
   ],
   notices: [
     {date:"2026-08-10", category:"공지", title:"사회적협동조합 플러스평택 홈페이지를 새롭게 준비하고 있습니다.", body:"플러스평택의 주요 사업과 활동 소식을 보다 쉽게 확인할 수 있도록 홈페이지를 정비하고 있습니다.", pinned:true}
