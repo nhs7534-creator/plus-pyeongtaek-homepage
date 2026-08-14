@@ -34,9 +34,10 @@
     return `<div class="floor-item"><strong>${esc(f.floor)}</strong><div class="floor-tenants">${tenants}</div></div>`;
   }).join('');
   document.getElementById('history-list').innerHTML=c.history.map(h=>`<li><time>${esc(h.year)}</time><span>${esc(h.text)}</span></li>`).join('');
-  function renderNotices(items){document.getElementById('notice-list').innerHTML=(items||[]).map(n=>`<article class="notice"><time datetime="${attr(n.date||'')}">${esc(n.date||'')}</time><span class="notice-category">${esc(n.category||'공지')}</span><div><h3>${n.pinned?'[중요] ':''}${esc(n.title)}</h3><p>${esc(n.body||'')}</p></div></article>`).join('')||'<p>등록된 공지사항이 없습니다.</p>'}
+  function renderNotices(items){document.getElementById('notice-list').innerHTML=(items||[]).map(n=>`<article class="notice"><button type="button" class="notice-toggle"><time datetime="${attr(n.date||'')}">${esc(n.date||'')}</time><span class="notice-category">${esc(n.category||'공지')}</span><h3>${n.pinned?'[중요] ':''}${esc(n.title)}</h3></button><p class="notice-body">${esc(n.body||'')}</p></article>`).join('')||'<p>등록된 공지사항이 없습니다.</p>';document.querySelectorAll('.notice-toggle').forEach(btn=>btn.onclick=()=>btn.closest('.notice').classList.toggle('expanded'))}
+  function renderPress(items){document.getElementById('press-list').innerHTML=(items||[]).map(p=>`<a class="press-item" href="${attr(p.url||'#')}" target="_blank" rel="noopener"><time>${esc(p.date||'')}</time><span class="press-outlet">${esc(p.outlet||'')}</span><h3>${esc(p.title)}</h3></a>`).join('')||'<p>등록된 언론보도가 없습니다.</p>'}
   function renderGallery(items){document.getElementById('gallery-grid').innerHTML=(items||[]).map(g=>`<figure class="gallery-card"><img src="${attr(g.image||g.image_url)}" alt="${esc(g.title||'활동 사진')}" loading="lazy"><figcaption><strong>${esc(g.title||'')}</strong><span>${esc(g.description||'')}</span></figcaption></figure>`).join('')||'<p>등록된 사진이 없습니다.</p>'}
-  renderNotices(c.notices);renderGallery(c.gallery);window.PLUS_RENDER={renderNotices,renderGallery};
+  renderNotices(c.notices);renderGallery(c.gallery);renderPress(c.press);window.PLUS_RENDER={renderNotices,renderGallery,renderPress};
   document.getElementById('map-link').href=`https://map.naver.com/p/search/${encodeURIComponent(c.mapQuery||c.address)}`;document.getElementById('year').textContent=new Date().getFullYear();
   const btn=document.querySelector('.menu-button'),nav=document.getElementById('main-nav');
   const closeNav=()=>{nav.classList.remove('open');btn.setAttribute('aria-expanded','false')};
